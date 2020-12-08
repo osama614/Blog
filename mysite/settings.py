@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 # make tageit app incase-sensitive
 TAGGIT_CASE_INSENSITIVE = True
 
+
+# site Id
+SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -78,10 +84,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog',
+        'USER': 'postgres',
+        'PASSWORD': 'robot9000',
+}
 }
 
 

@@ -35,12 +35,27 @@ Published {{ post.publish }} by {{ post.author }}
 
 {% if new_comment %}
   <h2>Your comment has been added.</h2>
-
+{% else %}
+  <div class="comment-form">
   <form method="post">
       {% csrf_token%}
       {{ comment_form.as_p }}
       <p><input type="submit" value="Add comment"></p>
   </form>
+</div>
+
 {% endif %}
 
+<div style="clear: both;"></div>
+
+<div class="recommendations">
+  <h2>Similar posts</h2>
+    {% for post in similar_posts %}
+    <p>
+    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+    </p>
+  {% empty %}
+    <p> There are no similar posts yet.</p>
+  {% endfor %}
+  </div>
 {% endblock content %}
